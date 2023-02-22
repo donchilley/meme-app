@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 
 interface uploaderProps {
     triggerUploadPopup: Function,
@@ -10,7 +10,6 @@ function ImageUploader(props: uploaderProps) {
     const { triggerUploadPopup, submitImage } = props
 
     const [image, setImage] = useState("");
-
     const imageRef = useRef<HTMLInputElement>(null)
 
     const [errors, setErrors] = useState<string[]>([])
@@ -22,7 +21,6 @@ function ImageUploader(props: uploaderProps) {
             errors.push("Please select an image to upload.")
         }
         if (imageRef.current) {
-
             setErrors(errors)
             if (errors.length === 0) {
                 submitImage(image);
@@ -30,7 +28,6 @@ function ImageUploader(props: uploaderProps) {
                 close();
             }
         }
-
     }
 
     function close() {
@@ -46,7 +43,6 @@ function ImageUploader(props: uploaderProps) {
     }
 
     return (
-
         <div className='uploader-content'>
             <span style={{ padding: "5px", position: "fixed" }}>Upload An Image</span>
             <form className='form' onSubmit={handleSubmit}>
@@ -55,7 +51,7 @@ function ImageUploader(props: uploaderProps) {
                 </div>
                 {
                     errors.length > 0 && errors.map((error, index) => {
-                        return <p key={index} style={{ color: 'red' }}>{error}</p>
+                        return <p key={index} style={{ color: 'red', background: 'black' }}>{error}</p>
                     })
                 }
                 <div className='button-section'>
